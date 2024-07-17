@@ -47,7 +47,8 @@ public class Enlace {
         try{  
             establecerConexion();
             Statement statement = obtenerConexion().createStatement();
-            String data = String.format("INSERT INTO Ciudad (nombre, poblacion) "
+            String data = String.format("INSERT INTO Ciudad (nombre, poblacion) "// Ciudad es el nombre la tabla que esta creada en la base de datso 
+                    
                     + "values ('%s', %d)", ciudad.obtenerNombre(), 
                     ciudad.obtenerPoblacion());
             statement.executeUpdate(data);
@@ -68,6 +69,9 @@ public class Enlace {
             
             ResultSet rs = statement.executeQuery(data);
             while(rs.next()){
+                //está iterando sobre los resultados de una consulta
+                //SQL y creando objetos Ciudad para cada fila en los resultados
+
                 Ciudad miCiudad = new Ciudad(rs.getString("nombre"),
                 rs.getInt("poblacion"));
                 lista.add(miCiudad);
